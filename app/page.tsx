@@ -19,7 +19,7 @@ export default function Home() {
 
   return (
     <>
-      <section className="relative flex min-h-[80vh] items-center justify-center overflow-hidden px-6 py-24">
+      <section className="relative flex min-h-[80vh] items-center justify-center overflow-hidden px-6 pb-24 pt-40">
         {fotos.length > 0 && <HeroSlider fotos={fotos} />}
 
         <div className="relative mx-auto max-w-3xl text-center">

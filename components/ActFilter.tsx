@@ -41,8 +41,8 @@ export default function ActFilter({ acts, start }: { acts: Act[]; start?: string
 
   return (
     <>
-      <div className="relative z-10 -mt-8 px-6">
-        <div className="mx-auto flex max-w-6xl flex-col gap-4 rounded-3xl border border-goud/40 bg-zwart/85 px-6 py-6 shadow-2xl backdrop-blur-md sm:flex-row sm:items-center">
+      <div className="relative z-10 -mt-1 border-y border-goud/30 bg-diep/95 backdrop-blur-md">
+        <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-7 sm:flex-row sm:items-center">
           <label htmlFor="zoek" className="shrink-0 text-sm font-bold uppercase tracking-[0.2em] text-goud">Waar ben je naar op zoek?</label>
           <input id="zoek" value={zoek} onChange={(e) => setZoek(e.target.value)} placeholder="Naam, genre of tijdperk..." className="w-full rounded-full border border-rand bg-kaart px-6 py-3.5 text-tekst outline-none transition placeholder:text-dim focus:border-goud" />
         </div>

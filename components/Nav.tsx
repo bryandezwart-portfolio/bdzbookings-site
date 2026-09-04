@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const links = [
   { href: "/acts", label: "Acts" },
@@ -12,9 +12,17 @@ const links = [
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const [gescrold, setGescrold] = useState(false);
+
+  useEffect(() => {
+    const kijk = () => setGescrold(window.scrollY > 40);
+    kijk();
+    window.addEventListener("scroll", kijk, { passive: true });
+    return () => window.removeEventListener("scroll", kijk);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-rand/60 bg-zwart/70 backdrop-blur-xl">
+    <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${gescrold || open ? "border-b border-rand/60 bg-zwart/80 backdrop-blur-xl" : "bg-gradient-to-b from-zwart/80 to-transparent"}`}>
       <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4">
         <Link href="/" onClick={() => setOpen(false)} className="flex shrink-0 items-center"><Image src="/logo.png" alt="Bryan de Zwart Bookings" width={420} height={120} priority className="h-9 w-auto sm:h-10" /></Link>
 
@@ -33,7 +41,7 @@ export default function Nav() {
       </nav>
 
       {open && (
-        <div className="border-t border-rand/60 px-6 pb-6 pt-2 sm:hidden">
+        <div className="border-t border-rand/60 bg-zwart px-6 pb-6 pt-2 sm:hidden">
           {links.map((l) => (
             <Link key={l.href} href={l.href} onClick={() => setOpen(false)} className="block border-b border-rand/40 py-4 text-lg text-dim transition hover:text-tekst">{l.label}</Link>
           ))}
