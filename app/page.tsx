@@ -3,6 +3,8 @@ import path from "path";
 import Link from "next/link";
 import HeroSlider from "@/components/HeroSlider";
 import TypeTekst from "@/components/TypeTekst";
+import ActCarrousel from "@/components/ActCarrousel";
+import { createPublicClient } from "@/lib/supabase";
 
 function sfeerfotos() {
   try {
@@ -14,8 +16,17 @@ function sfeerfotos() {
   }
 }
 
-export default function Home() {
+export const revalidate = 300;
+
+export default async function Home() {
   const fotos = sfeerfotos();
+
+  const supabase = createPublicClient();
+  const { data: acts } = await supabase
+    .from("bdzbookings_acts")
+    .select("slug, name, type, genres, foto_url")
+    .eq("publiek_zichtbaar", true)
+    .order("name");
 
   return (
     <>
@@ -33,6 +44,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <ActCarrousel acts={acts ?? []} />
 
       <section className="px-6 py-24">
         <div className="mx-auto grid max-w-5xl gap-4 sm:grid-cols-3">

@@ -22,20 +22,26 @@ function spotifyEmbed(url: string | null) {
   return m ? `https://open.spotify.com/embed/${m[1]}/${m[2]}` : null;
 }
 
+function euro(n: number) {
+  return new Intl.NumberFormat("nl-NL", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n);
+}
+
 export default async function ActPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const supabase = createPublicClient();
   const { data: act } = await supabase
     .from("bdzbookings_acts")
-    .select("slug, name, type, genres, tijdperken, bio, omschrijving, specialiteit, aantal_personen, setmaat, speelschema, foto_url, fotos, video_url, spotify_url, publiek_min, publiek_max")
+    .select("slug, name, type, genres, tijdperken, bio, omschrijving, specialiteit, aantal_personen, setmaat, speelschema, foto_url, fotos, video_url, video_url_2, spotify_url, prijs_vanaf, prijs_notitie, publiek_min, publiek_max")
     .eq("slug", slug)
     .eq("publiek_zichtbaar", true)
     .maybeSingle();
 
   if (!act) notFound();
 
-  const yt = youtubeId(act.video_url);
+  const videos = [youtubeId(act.video_url), youtubeId(act.video_url_2)].filter(Boolean) as string[];
   const sp = spotifyEmbed(act.spotify_url);
+  const tekst = (act.bio ?? act.omschrijving ?? "").split("\n").filter(Boolean);
+
   const feiten: [string, string][] = [];
   if (act.aantal_personen) feiten.push(["Bezetting", `${act.aantal_personen} personen`]);
   if (act.setmaat) feiten.push(["Setduur", act.setmaat]);
@@ -44,57 +50,93 @@ export default async function ActPage({ params }: { params: Promise<{ slug: stri
   if (act.publiek_min && act.publiek_max) feiten.push(["Publiek", `${act.publiek_min} tot ${act.publiek_max} personen`]);
 
   return (
-    <main className="min-h-screen px-6 py-16">
-      <div className="mx-auto max-w-4xl">
-        <Link href="/acts" className="text-sm text-dim transition hover:text-tekst">&larr; Alle acts</Link>
-
-        {act.foto_url && (
-          <div className="mt-8 overflow-hidden rounded-3xl border border-rand"><Image src={act.foto_url} alt={act.name} width={1600} height={900} className="h-auto w-full object-cover" /></div>
-        )}
-
-        <p className="mt-10 text-sm uppercase tracking-widest text-oranje">{LABELS[act.type] ?? act.type}</p>
-        <h1 className="mt-3 text-4xl font-semibold sm:text-5xl">{act.name}</h1>
-        {act.genres?.length > 0 && <p className="mt-3 text-dim">{act.genres.join(" · ")}</p>}
-
-        {(act.bio || act.omschrijving) && (
-          <div className="mt-10 max-w-2xl space-y-4 text-lg leading-relaxed text-dim">
-            {(act.bio ?? act.omschrijving).split("\n").filter(Boolean).map((p: string, i: number) => <p key={i}>{p}</p>)}
-          </div>
-        )}
-
-        {feiten.length > 0 && (
-          <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-rand bg-rand sm:grid-cols-2">
-            {feiten.map(([k, v]) => (
-              <div key={k} className="bg-kaart p-5"><p className="text-xs uppercase tracking-widest text-dim">{k}</p><p className="mt-1 font-medium">{v}</p></div>
-            ))}
-          </div>
-        )}
-
-        {act.tijdperken?.length > 0 && (
-          <div className="mt-8 flex flex-wrap gap-2">
-            {act.tijdperken.map((t: string) => <span key={t} className="rounded-full border border-rand px-4 py-1.5 text-sm text-dim">{t}</span>)}
-          </div>
-        )}
-
-        {yt && (
-          <div className="mt-14 aspect-video overflow-hidden rounded-2xl border border-rand"><iframe src={`https://www.youtube.com/embed/${yt}`} title={act.name} allowFullScreen className="h-full w-full" /></div>
-        )}
-
-        {sp && (
-          <div className="mt-8 overflow-hidden rounded-2xl"><iframe src={sp} height="352" loading="lazy" allow="encrypted-media" className="w-full" /></div>
-        )}
-
-        {act.fotos?.length > 0 && (
-          <div className="mt-14 grid gap-4 sm:grid-cols-2">
-            {act.fotos.map((f: string) => <Image key={f} src={f} alt={act.name} width={800} height={600} className="h-full w-full rounded-2xl border border-rand object-cover" />)}
-          </div>
-        )}
-
-        <div className="mt-16 rounded-3xl border border-rand bg-kaart p-8">
-          <h2 className="text-2xl font-medium">{act.name} boeken?</h2>
-          <p className="mt-2 text-dim">Vraag vrijblijvend de beschikbaarheid op. Ik neem persoonlijk contact met je op.</p>
-          <Link href={`/contact?act=${act.slug}`} className="mt-6 inline-block rounded-full bg-oranje px-7 py-3 font-medium text-zwart transition hover:opacity-90">Aanvraag doen</Link>
+    <main className="min-h-screen">
+      <section className="relative flex min-h-[52vh] items-end overflow-hidden px-6 pb-12 pt-40">
+        {act.foto_url && <Image src={act.foto_url} alt={act.name} fill priority sizes="100vw" className="object-cover" />}
+        <div className="absolute inset-0 bg-zwart/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-zwart via-zwart/30 to-transparent" />
+        <div className="relative mx-auto w-full max-w-6xl">
+          <p className="text-sm font-bold uppercase tracking-[0.2em] text-oranje">{LABELS[act.type] ?? act.type}</p>
+          <h1 className="mt-3 text-4xl font-extrabold tracking-tight drop-shadow-lg sm:text-6xl">{act.name}</h1>
+          {act.genres && act.genres.length > 0 && <p className="mt-3 text-tekst/90 drop-shadow">{act.genres.join(" · ")}</p>}
         </div>
+      </section>
+
+      <div className="mx-auto max-w-6xl px-6 pb-24 pt-14">
+        <div className="grid gap-12 lg:grid-cols-[1fr_320px]">
+          <div>
+            {tekst.length > 0 && (
+              <>
+                <h2 className="text-2xl font-bold">Biografie</h2>
+                <div className="mt-5 space-y-4 leading-relaxed text-dim">
+                  {tekst.map((p: string, i: number) => <p key={i}>{p}</p>)}
+                </div>
+              </>
+            )}
+
+            {act.tijdperken && act.tijdperken.length > 0 && (
+              <div className="mt-8 flex flex-wrap gap-2">
+                {act.tijdperken.map((t: string) => <span key={t} className="rounded-full border border-rand px-4 py-1.5 text-sm text-dim">{t}</span>)}
+              </div>
+            )}
+
+            {act.fotos && act.fotos.length > 0 && (
+              <section className="mt-14">
+                <h2 className="text-2xl font-bold">Foto&apos;s</h2>
+                <div className="mt-5 grid gap-4 sm:grid-cols-3">
+                  {act.fotos.map((f: string) => <Image key={f} src={f} alt={act.name} width={600} height={800} className="aspect-[3/4] w-full rounded-2xl border border-rand object-cover" />)}
+                </div>
+              </section>
+            )}
+
+            {videos.length > 0 && (
+              <section className="mt-14">
+                <h2 className="text-2xl font-bold">Video&apos;s</h2>
+                <div className={`mt-5 grid gap-4 ${videos.length > 1 ? "sm:grid-cols-2" : ""}`}>
+                  {videos.map((v) => (
+                    <div key={v} className="aspect-video overflow-hidden rounded-2xl border border-rand"><iframe src={`https://www.youtube.com/embed/${v}`} title={act.name} allowFullScreen className="h-full w-full" /></div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {sp && (
+              <section className="mt-14">
+                <h2 className="text-2xl font-bold">Spotify</h2>
+                <div className="mt-5 overflow-hidden rounded-2xl"><iframe src={sp} height="352" loading="lazy" allow="encrypted-media" className="w-full" /></div>
+              </section>
+            )}
+          </div>
+
+          <aside className="space-y-4 lg:sticky lg:top-28 lg:self-start">
+            {act.prijs_vanaf && (
+              <div className="rounded-2xl border border-rand bg-kaart p-5">
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-oranje">Prijsindicatie</p>
+                <p className="mt-2 text-xl font-bold">Vanaf {euro(act.prijs_vanaf)}</p>
+                <p className="mt-1 text-sm text-dim">{act.prijs_notitie ?? "Inclusief bemiddeling, excl. reiskosten"}</p>
+              </div>
+            )}
+
+            <div className="rounded-2xl border border-rand bg-kaart p-5">
+              <Link href={`/contact?act=${act.slug}`} className="block rounded-full bg-oranje py-3 text-center font-medium text-zwart transition hover:opacity-90">Beschikbaarheid opvragen</Link>
+              <p className="mt-3 text-center text-xs text-dim">Vrijblijvend. Ik bel je persoonlijk terug.</p>
+              <a href="tel:+31850606460" className="mt-4 block rounded-full border border-rand py-3 text-center text-sm transition hover:border-oranje">Of bel 085 060 6460</a>
+            </div>
+
+            {feiten.length > 0 && (
+              <div className="rounded-2xl border border-rand bg-kaart p-5">
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-oranje">Goed om te weten</p>
+                <dl className="mt-4 space-y-3 text-sm">
+                  {feiten.map(([k, v]) => (
+                    <div key={k}><dt className="text-dim">{k}</dt><dd className="mt-0.5 font-medium">{v}</dd></div>
+                  ))}
+                </dl>
+              </div>
+            )}
+          </aside>
+        </div>
+
+        <Link href="/acts" className="mt-16 inline-block text-sm text-dim transition hover:text-oranje">&larr; Alle acts</Link>
       </div>
     </main>
   );
