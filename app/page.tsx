@@ -32,11 +32,14 @@ export default async function Home() {
   return (
     <>
       <section className="relative flex min-h-[80vh] items-center justify-center overflow-hidden px-6 pb-24 pt-40">
-        {fotos.length > 0 && <HeroSlider fotos={fotos} />}
+        {fotos.length > 0 && <HeroSlider fotos={fotos.filter((f) => f !== "BDZBooking_07.jpg")} />}
 
         <div className="relative mx-auto max-w-3xl text-center">
           <p className="text-sm font-bold uppercase tracking-[0.3em] text-oranje">E&eacute;n telefoontje, en het is geregeld</p>
-          <h1 className="mt-6 text-5xl font-extrabold leading-[1.05] tracking-tight text-balance sm:text-7xl">De juiste act voor<br /><TypeTekst /></h1>
+          <h1 className="mt-6 text-5xl font-extrabold leading-[1.05] tracking-tight text-balance sm:text-7xl">
+            <span className="sr-only">Dj, artiest of band boeken voor jouw bruiloft, bedrijfsfeest of dorpsfeest in Noord-Brabant en Gelderland</span>
+            <span aria-hidden="true">De juiste act voor<br /><TypeTekst /></span>
+          </h1>
           <p className="mx-auto mt-6 max-w-xl text-lg text-balance text-tekst/80">Dj&apos;s, artiesten en bands voor bruiloften, bedrijfsfeesten en dorpsfeesten. Ik regel het van eerste telefoontje tot laatste nummer.</p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-3">
@@ -49,7 +52,7 @@ export default async function Home() {
       <ActCarrousel acts={acts ?? []} />
 
       <section className="relative overflow-hidden px-6 py-32">
-        {fotos.length > 1 && <Image src={`/sfeer/${fotos[1]}`} alt="" fill sizes="100vw" className="object-cover" />}
+        <Image src="/sfeer/BDZBooking_07.jpg" alt="" fill sizes="100vw" className="object-cover" />
         <div className="absolute inset-0 bg-zwart/80" />
         <div className="relative mx-auto max-w-3xl text-center">
           <p className="text-lg leading-relaxed text-tekst/90 sm:text-xl">Bryan de Zwart Bookings is het boekingsbureau van Bryan de Zwart uit Cuijk. Als artiestenbureau voor Noord-Brabant en Gelderland regel ik dj&apos;s, artiesten en bands voor bruiloften, bedrijfsfeesten, dorpsfeesten en tentfeesten. Zelf al dj sinds mijn vijftiende, dus ik weet wat een avond nodig heeft: ik denk mee, adviseer eerlijk en zoek de act die bij jouw publiek past. Korte lijnen, persoonlijk contact en op de avond zelf gewoon bereikbaar.</p>

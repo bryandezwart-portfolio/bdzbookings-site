@@ -30,7 +30,7 @@ export default function Nav() {
           {links.map((l) => (
             <Link key={l.href} href={l.href} className="whitespace-nowrap text-dim transition hover:text-tekst">{l.label}</Link>
           ))}
-          <Link href="/contact" className="whitespace-nowrap rounded-full bg-oranje px-5 py-2 font-medium text-zwart transition hover:opacity-90">Aanvraag doen</Link>
+          <Link href="/contact" className="gloed whitespace-nowrap rounded-full bg-oranje px-5 py-2 font-medium text-zwart transition hover:opacity-90">Aanvraag doen</Link>
         </div>
 
         <button onClick={() => setOpen(!open)} aria-label="Menu" aria-expanded={open} className="flex h-10 w-10 shrink-0 flex-col items-center justify-center gap-[5px] sm:hidden">
