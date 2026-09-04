@@ -40,7 +40,7 @@ export default function AanvraagForm({ act }: { act?: string }) {
         <input name="email" type="email" required placeholder="E-mailadres *" className={veldStijl} />
         <input name="telefoon" required placeholder="Telefoonnummer *" className={veldStijl} />
         <input name="plaats" required placeholder="Plaats van het feest *" className={veldStijl} />
-        <input name="datum" type="date" className={veldStijl} />
+        <input name="datum" type="date" onChange={(e) => e.currentTarget.setAttribute("data-gevuld", e.currentTarget.value ? "ja" : "nee")} className={veldStijl} />
         <input name="tijdstip" placeholder="Tijdstip (bijv. 21:00 - 01:00)" className={veldStijl} />
       </div>
 
