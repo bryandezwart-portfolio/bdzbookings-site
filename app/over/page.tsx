@@ -15,7 +15,7 @@ export default function OverPage() {
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.3em] text-oranje">Over mij</p>
             <h1 className="mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl">Bryan de Zwart</h1>
-            <p className="mt-5 text-lg leading-relaxed text-dim">Dj sinds mijn vijftiende, en inmiddels ook de man die de acts voor jouw feest regelt.</p>
+            <p className="mt-5 text-lg leading-relaxed text-dim">Dj sinds mijn vijftiende, en inmiddels ook degene die de juiste dj, band of artiest voor jouw feest zoekt.</p>
           </div>
         </div>
 
