@@ -13,7 +13,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
       <div className="mx-auto max-w-6xl">
         <p className="text-sm font-bold uppercase tracking-[0.2em] text-oranje">Contact</p>
         <h1 className="mt-4 max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl">Kom gerust in contact met Bryan de Zwart Bookings</h1>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-dim">Zoek je een dj, artiest of band voor je bruiloft, bedrijfsfeest of dorpsfeest in Noord-Brabant of Gelderland? Bel of mail me, dan kijk ik wie er past bij jouw avond en wie er vrij is. Ook als je nog geen idee hebt wie je wilt: ik denk graag mee.</p>
+        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-dim">Zoek je een dj, artiest of band voor je bruiloft, bedrijfsfeest of dorpsfeest? Ik werk vanuit Cuijk, met een zwaartepunt in Noord-Brabant en Gelderland, maar daarbuiten kom ik net zo goed. Bel of mail me, dan kijk ik wie er past bij jouw avond en wie er vrij is.</p>
 
         <div className="mt-16 grid gap-12 lg:grid-cols-[1fr_340px]">
           <div>
@@ -27,7 +27,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-oranje">Liever bellen?</p>
               <a href="tel:+31850606460" className="mt-3 block text-2xl font-bold transition hover:text-oranje">085 060 6460</a>
               <a href="mailto:info@bdzbookings.nl" className="mt-2 block text-dim transition hover:text-oranje">info@bdzbookings.nl</a>
-              <p className="mt-4 text-sm leading-relaxed text-dim">Bellen gaat het snelst: dan weet je meteen wie er vrij is op jouw datum. Mailen kan ook, ik reageer meestal dezelfde dag.</p>
+              <p className="mt-4 text-sm leading-relaxed text-dim">Bel voor een direct antwoord over beschikbaarheid en tarieven. Mail je liever? Dan hoor je doorgaans binnen een werkdag van me.</p>
             </div>
 
             <div className="rounded-2xl border border-rand bg-kaart p-6">
@@ -37,7 +37,6 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
                 <p>De Nieuwe Erven 3, unit 13617</p>
                 <p>5431 NV Cuijk</p>
               </address>
-              <p className="mt-4 text-sm text-dim">Werkgebied: Noord-Brabant en Gelderland</p>
             </div>
           </aside>
         </div>
