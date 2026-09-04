@@ -14,9 +14,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
     const supabase = createPublicClient();
     const { data } = await supabase
-      .from("bdzbookings_acts")
-      .select("slug")
-      .eq("publiek_zichtbaar", true);
+      .from("bdzbookings_acts_publiek")
+      .select("slug");
 
     const acts: MetadataRoute.Sitemap = (data ?? []).map((a) => ({
       url: `${BASIS}/acts/${a.slug}`,

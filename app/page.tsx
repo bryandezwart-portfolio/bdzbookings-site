@@ -24,9 +24,8 @@ export default async function Home() {
 
   const supabase = createPublicClient();
   const { data: acts } = await supabase
-    .from("bdzbookings_acts")
+    .from("bdzbookings_acts_publiek")
     .select("slug, name, type, genres, foto_url")
-    .eq("publiek_zichtbaar", true)
     .order("name");
 
   return (

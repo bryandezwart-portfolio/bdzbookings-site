@@ -27,9 +27,8 @@ export default async function ActsPage({ searchParams }: { searchParams: Promise
 
   const supabase = createPublicClient();
   const { data: acts } = await supabase
-    .from("bdzbookings_acts")
+    .from("bdzbookings_acts_publiek")
     .select("slug, name, type, genres, tijdperken")
-    .eq("publiek_zichtbaar", true)
     .order("name");
 
   return (

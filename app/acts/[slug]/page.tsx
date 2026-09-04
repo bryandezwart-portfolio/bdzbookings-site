@@ -36,10 +36,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const supabase = createPublicClient();
   const { data: a } = await supabase
-    .from("bdzbookings_acts")
+    .from("bdzbookings_acts_publiek")
     .select("name, type, genres, bio, omschrijving")
     .eq("slug", slug)
-    .eq("publiek_zichtbaar", true)
     .maybeSingle();
 
   if (!a) return { title: "Act niet gevonden | Bryan de Zwart Bookings" };
@@ -58,10 +57,9 @@ export default async function ActPage({ params }: { params: Promise<{ slug: stri
   const { slug } = await params;
   const supabase = createPublicClient();
   const { data: act } = await supabase
-    .from("bdzbookings_acts")
+    .from("bdzbookings_acts_publiek")
     .select("slug, name, type, genres, tijdperken, bio, omschrijving, specialiteit, aantal_personen, setmaat, speelschema, foto_url, fotos, video_url, video_url_2, spotify_url, prijs_vanaf, prijs_notitie, publiek_min, publiek_max")
     .eq("slug", slug)
-    .eq("publiek_zichtbaar", true)
     .maybeSingle();
 
   if (!act) notFound();
