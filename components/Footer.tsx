@@ -47,10 +47,10 @@ export default function Footer() {
               <p><Link href="/contact" className="text-dim transition hover:text-goud">Aanvraag doen</Link></p>
             </div>
 
-            <div className="mt-7 flex gap-3">
+            <div className="mt-5 flex gap-2.5">
               {socials.filter((s) => s.actief).map((s) => (
-                <a key={s.naam} href={s.url} target="_blank" rel="noopener noreferrer" aria-label={s.naam} className="flex h-10 w-10 items-center justify-center rounded-full border border-goud/30 text-dim transition hover:border-goud hover:text-goud">
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="h-[18px] w-[18px]"><path d={s.pad} /></svg>
+                <a key={s.naam} href={s.url} target="_blank" rel="noopener noreferrer" aria-label={s.naam} className="flex h-11 w-11 items-center justify-center rounded-full border border-goud/30 text-dim transition hover:border-goud hover:text-goud">
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5"><path d={s.pad} /></svg>
                 </a>
               ))}
             </div>
