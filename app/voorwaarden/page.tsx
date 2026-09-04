@@ -7,11 +7,13 @@ const artikelen: { kop: string; tekst: string }[] = [
   { kop: "1. Toepasselijkheid", tekst: "Deze voorwaarden zijn van toepassing op alle aanbiedingen, offertes en overeenkomsten van Bryan de Zwart Bookings." },
   { kop: "2. Overeenkomst", tekst: "Een boeking komt tot stand zodra deze schriftelijk is bevestigd door beide partijen, per e-mail of contract. Vanaf dat moment is de boeking bindend. Een aanvraag via de website is vrijblijvend en verplicht tot niets." },
   { kop: "3. Betaling", tekst: "Facturen dienen binnen de afgesproken termijn en uiterlijk v\u00F3\u00F3r het optreden te worden voldaan. Alle genoemde prijzen zijn exclusief btw, tenzij anders vermeld." },
-  { kop: "4. Verantwoordelijkheid opdrachtgever", tekst: "De opdrachtgever draagt zorg voor een geschikte locatie, de juiste faciliteiten zoals geluid, licht en stroom, en het naleven van alle geldende wet- en regelgeving." },
-  { kop: "5. Overmacht", tekst: "In geval van overmacht, zoals ziekte van de artiest of onvoorziene omstandigheden, wordt in overleg gezocht naar een passende oplossing, zoals vervanging of verplaatsing van de boeking." },
-  { kop: "6. Aansprakelijkheid", tekst: "Bryan de Zwart Bookings is niet aansprakelijk voor schade ontstaan tijdens het optreden of door technische storingen buiten haar invloed. De aansprakelijkheid is in alle gevallen beperkt tot het factuurbedrag." },
-  { kop: "7. Promotie", tekst: "De opdrachtgever is gerechtigd om naam en beeldmateriaal van de artiest te gebruiken voor promotionele doeleinden rondom het evenement." },
-  { kop: "8. Toepasselijk recht", tekst: "Op alle overeenkomsten is Nederlands recht van toepassing." },
+  { kop: "4. Annulering door de opdrachtgever", tekst: "Annuleert u een bevestigde boeking, dan bent u een percentage van het factuurbedrag verschuldigd: bij annulering tot 30 dagen v\u00F3\u00F3r het optreden 25%, tussen 30 en 14 dagen 50%, tussen 14 en 7 dagen 75%, en binnen 7 dagen voor het optreden het volledige bedrag. Bij verplaatsing naar een andere datum zoek ik in overleg naar een oplossing zonder annuleringskosten, mits de artiest op de nieuwe datum beschikbaar is." },
+  { kop: "5. BUMA-Stemra", tekst: "De afdracht aan BUMA-Stemra wordt geregeld door de organisator van het evenement, tenzij schriftelijk anders overeengekomen." },
+  { kop: "6. Verantwoordelijkheid opdrachtgever", tekst: "De opdrachtgever draagt zorg voor een geschikte locatie, de juiste faciliteiten zoals geluid, licht en stroom, en het naleven van alle geldende wet- en regelgeving." },
+  { kop: "7. Overmacht", tekst: "In geval van overmacht, zoals ziekte van de artiest of onvoorziene omstandigheden, wordt in overleg gezocht naar een passende oplossing, zoals vervanging of verplaatsing van de boeking." },
+  { kop: "8. Aansprakelijkheid", tekst: "Bryan de Zwart Bookings is niet aansprakelijk voor schade ontstaan tijdens het optreden of door technische storingen buiten haar invloed. De aansprakelijkheid is in alle gevallen beperkt tot het factuurbedrag." },
+  { kop: "9. Promotie", tekst: "De opdrachtgever is gerechtigd om naam en beeldmateriaal van de artiest te gebruiken voor promotionele doeleinden rondom het evenement." },
+  { kop: "10. Toepasselijk recht", tekst: "Op alle overeenkomsten is Nederlands recht van toepassing." },
 ];
 
 export default function VoorwaardenPage() {
