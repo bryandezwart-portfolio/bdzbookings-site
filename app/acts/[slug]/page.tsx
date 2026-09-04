@@ -26,6 +26,34 @@ function euro(n: number) {
   return new Intl.NumberFormat("nl-NL", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n);
 }
 
+
+const TITELS: Record<string, string> = {
+  dj: "Dj", artiest: "Artiest", band: "Band",
+  special: "Act", act: "Act", overig: "Act",
+};
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const supabase = createPublicClient();
+  const { data: a } = await supabase
+    .from("bdzbookings_acts")
+    .select("name, type, genres, bio, omschrijving")
+    .eq("slug", slug)
+    .eq("publiek_zichtbaar", true)
+    .maybeSingle();
+
+  if (!a) return { title: "Act niet gevonden | Bryan de Zwart Bookings" };
+
+  const soort = TITELS[a.type] ?? "Act";
+  const genres = a.genres?.length ? ` ${a.genres.slice(0, 2).join(" en ")}.` : "";
+  const kort = (a.bio ?? a.omschrijving ?? "").split("\n")[0]?.slice(0, 130);
+
+  return {
+    title: `${a.name} boeken | ${soort} voor bruiloft, bedrijfsfeest of dorpsfeest`,
+    description: kort || `Boek ${a.name} via Bryan de Zwart Bookings.${genres} Vrijblijvend de beschikbaarheid opvragen voor Noord-Brabant en Gelderland.`,
+  };
+}
+
 export default async function ActPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const supabase = createPublicClient();
