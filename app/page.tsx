@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import Image from "next/image";
 import Link from "next/link";
 import HeroSlider from "@/components/HeroSlider";
 import TypeTekst from "@/components/TypeTekst";
@@ -47,8 +48,10 @@ export default async function Home() {
 
       <ActCarrousel acts={acts ?? []} />
 
-      <section className="border-y border-goud/25 bg-gradient-to-b from-diep via-[#1A0E06] to-diep px-6 py-28">
-        <div className="mx-auto max-w-3xl text-center">
+      <section className="relative overflow-hidden px-6 py-32">
+        {fotos.length > 1 && <Image src={`/sfeer/${fotos[1]}`} alt="" fill sizes="100vw" className="object-cover" />}
+        <div className="absolute inset-0 bg-zwart/80" />
+        <div className="relative mx-auto max-w-3xl text-center">
           <p className="text-lg leading-relaxed text-tekst/90 sm:text-xl">Bryan de Zwart Bookings is het boekingsbureau van Bryan de Zwart uit Cuijk. Als artiestenbureau voor Noord-Brabant en Gelderland regel ik dj&apos;s, artiesten en bands voor bruiloften, bedrijfsfeesten, dorpsfeesten en tentfeesten. Zelf al dj sinds mijn vijftiende, dus ik weet wat een avond nodig heeft: ik denk mee, adviseer eerlijk en zoek de act die bij jouw publiek past. Korte lijnen, persoonlijk contact en op de avond zelf gewoon bereikbaar.</p>
           <Link href="/contact" className="mt-10 inline-block rounded-full bg-oranje px-8 py-3.5 font-medium text-zwart transition hover:opacity-90">Neem contact met me op</Link>
         </div>
