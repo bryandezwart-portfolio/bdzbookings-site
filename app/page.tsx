@@ -24,8 +24,8 @@ export default function Home() {
         {fotos.length > 0 && <HeroSlider fotos={fotos} />}
 
         <div className="relative mx-auto max-w-3xl text-center">
-          <p className="text-sm uppercase tracking-[0.3em] text-oranje">E&eacute;n telefoontje, en het is geregeld</p>
-          <h1 className="mt-6 text-5xl font-semibold leading-tight text-balance sm:text-7xl">De juiste act voor<br /><TypeTekst /></h1>
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-oranje">E&eacute;n telefoontje, en het is geregeld</p>
+          <h1 className="mt-6 text-5xl font-extrabold leading-[1.05] tracking-tight text-balance sm:text-7xl">De juiste act voor<br /><TypeTekst /></h1>
           <p className="mx-auto mt-6 max-w-xl text-lg text-balance text-tekst/80">Dj&apos;s, artiesten en bands voor bruiloften, bedrijfsfeesten en dorpsfeesten. Ik regel het van eerste telefoontje tot laatste nummer.</p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-3">
