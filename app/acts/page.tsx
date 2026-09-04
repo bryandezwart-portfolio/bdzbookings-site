@@ -39,8 +39,8 @@ export default async function ActsPage({ searchParams }: { searchParams: Promise
         <div className="absolute inset-0 bg-zwart/55" />
         <div className="absolute inset-0 bg-gradient-to-b from-zwart/60 via-transparent to-zwart" />
         <div className="relative text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight drop-shadow-lg sm:text-6xl">Onze acts</h1>
-          <p className="mt-4 text-lg text-tekst/90 drop-shadow">Dj&apos;s, artiesten en bands voor ieder feest</p>
+          <h1 className="opdoemen text-4xl font-extrabold tracking-tight drop-shadow-lg sm:text-6xl">Artiesten, dj&apos;s en bands</h1>
+          <p className="omhoog mt-4 text-lg font-semibold text-tekst drop-shadow sm:text-xl">Vind wie er past bij jouw feest</p>
         </div>
       </section>
 
