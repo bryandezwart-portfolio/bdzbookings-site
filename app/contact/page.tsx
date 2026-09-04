@@ -27,7 +27,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-oranje">Liever bellen?</p>
               <a href="tel:+31850606460" className="mt-3 block text-2xl font-bold transition hover:text-oranje">085 060 6460</a>
               <a href="mailto:info@bdzbookings.nl" className="mt-2 block text-dim transition hover:text-oranje">info@bdzbookings.nl</a>
-              <p className="mt-4 text-sm leading-relaxed text-dim">Bel voor een direct antwoord over beschikbaarheid en tarieven. Mail je liever? Dan hoor je doorgaans binnen een werkdag van me.</p>
+              <p className="mt-4 text-sm leading-relaxed text-dim">Bel voor een direct antwoord over beschikbaarheid en tarieven. Mail je liever? Je krijgt binnen één werkdag een reactie in je mailbox.</p>
             </div>
 
             <div className="rounded-2xl border border-rand bg-kaart p-6">
