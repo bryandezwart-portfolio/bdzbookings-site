@@ -2,7 +2,14 @@
 
 import { useEffect, useState } from "react";
 
-const woorden = ["jouw feest", "jouw bruiloft", "je bedrijfsfeest", "het dorpsfeest", "jouw tentfeest"];
+const woorden = [
+  "jullie bruiloft",
+  "je bedrijfsfeest",
+  "ons dorpsfeest",
+  "jullie personeelsfeest",
+  "jullie jubileum",
+  "je afscheidsfeest",
+];
 
 export default function TypeTekst() {
   const [i, setI] = useState(0);
@@ -23,7 +30,7 @@ export default function TypeTekst() {
       return;
     }
 
-    const tik = setTimeout(() => setLengte((n) => n + (wist ? -1 : 1)), wist ? 40 : 90);
+    const tik = setTimeout(() => setLengte((n) => n + (wist ? -1 : 1)), wist ? 55 : 125);
     return () => clearTimeout(tik);
   }, [lengte, wist, i]);
 
