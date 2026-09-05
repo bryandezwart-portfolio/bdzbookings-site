@@ -69,7 +69,7 @@ export default async function ActPage({ params }: { params: Promise<{ slug: stri
   const tekst = (act.bio ?? act.omschrijving ?? "").split("\n").filter(Boolean);
 
   const feiten: [string, string][] = [];
-  if (act.aantal_personen) feiten.push(["Bezetting", `${act.aantal_personen} personen`]);
+  if (act.aantal_personen) feiten.push(["Bezetting", `${act.aantal_personen} ${act.aantal_personen === 1 ? "persoon" : "personen"}`]);
   if (act.setmaat) feiten.push(["Setduur", act.setmaat]);
   if (act.speelschema) feiten.push(["Speelschema", act.speelschema]);
   if (act.specialiteit) feiten.push(["Specialiteit", act.specialiteit]);
