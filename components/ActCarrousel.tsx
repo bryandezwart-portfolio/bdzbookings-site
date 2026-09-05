@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-type Act = { slug: string; name: string; type: string; genres: string[] | null; foto_url: string | null };
+type Act = { slug: string; name: string; type: string; genres: string[] | null; kaart_foto: string | null; foto_url: string | null };
 
 const LABELS: Record<string, string> = {
   dj: "Dj", artiest: "Artiest", band: "Band",
@@ -49,8 +49,8 @@ export default function ActCarrousel({ acts }: { acts: Act[] }) {
         <div className="shrink-0 sm:w-[calc((100vw-72rem)/2)]" />
         {acts.map((a) => (
           <Link key={a.slug} href={`/acts/${a.slug}`} className="group relative aspect-[3/4] w-64 shrink-0 snap-start overflow-hidden rounded-2xl border border-rand bg-kaart sm:w-72">
-            {a.foto_url ? (
-              <Image src={a.foto_url} alt={a.name} fill sizes="288px" className="object-cover transition duration-700 group-hover:scale-105" />
+            {(a.kaart_foto ?? a.foto_url) ? (
+              <Image src={(a.kaart_foto ?? a.foto_url) as string} alt={a.name} fill sizes="288px" className="object-cover transition duration-700 group-hover:scale-105" />
             ) : (
               <div className="absolute inset-0 bg-gradient-to-br from-kaart to-zwart" />
             )}
