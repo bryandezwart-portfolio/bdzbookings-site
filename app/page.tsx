@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { sfeerfotos } from "@/lib/sfeer";
 import Link from "next/link";
 import HeroSlider from "@/components/HeroSlider";
 import TypeTekst from "@/components/TypeTekst";
@@ -9,9 +8,16 @@ import { createPublicClient } from "@/lib/supabase";
 export const revalidate = 300;
 
 export default async function Home() {
-  const fotos = sfeerfotos;
-
   const supabase = createPublicClient();
+
+  const { data: sfeer } = await supabase
+    .from("bdzbookings_sfeer")
+    .select("foto_url, plek")
+    .eq("actief", true)
+    .order("volgorde");
+  const fotos = (sfeer ?? []).filter((r) => r.plek === "homepage-slider").map((r) => r.foto_url);
+  const blokFoto = (sfeer ?? []).find((r) => r.plek === "homepage-blok")?.foto_url ?? null;
+
   const { data: acts } = await supabase
     .from("bdzbookings_acts_publiek")
     .select("slug, name, type, genres, kaart_foto, foto_url")
@@ -40,7 +46,7 @@ export default async function Home() {
       <ActCarrousel acts={acts ?? []} />
 
       <section className="relative overflow-hidden px-6 py-32">
-        <Image src="/sfeer/BDZBooking_07.jpg" alt="" fill sizes="100vw" className="object-cover" />
+        {blokFoto && <Image src={blokFoto} alt="" fill sizes="100vw" className="object-cover" />}
         <div className="absolute inset-0 bg-zwart/80" />
         <div className="relative mx-auto max-w-3xl text-center">
           <p className="text-lg leading-relaxed text-tekst/90 sm:text-xl">Bryan de Zwart Bookings is het boekingsbureau van Bryan de Zwart uit Cuijk. Als artiestenbureau voor Noord-Brabant en Gelderland regel ik dj&apos;s, artiesten en bands voor bruiloften, bedrijfsfeesten, dorpsfeesten en tentfeesten. Zelf al dj sinds mijn vijftiende, dus ik weet wat een avond nodig heeft: ik denk mee, adviseer eerlijk en zoek de act die bij jouw publiek past. Korte lijnen, persoonlijk contact en op de avond zelf gewoon bereikbaar.</p>

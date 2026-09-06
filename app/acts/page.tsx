@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { sfeerfotos } from "@/lib/sfeer";
 import { createPublicClient } from "@/lib/supabase";
 import ActFilter from "@/components/ActFilter";
 
@@ -12,9 +11,17 @@ export const metadata = {
 
 export default async function ActsPage({ searchParams }: { searchParams: Promise<{ type?: string }> }) {
   const { type } = await searchParams;
-  const foto = sfeerfotos[sfeerfotos.length - 1] ?? null;
-
   const supabase = createPublicClient();
+
+  const { data: sfeer } = await supabase
+    .from("bdzbookings_sfeer")
+    .select("foto_url")
+    .eq("actief", true)
+    .eq("plek", "acts-kop")
+    .order("volgorde")
+    .limit(1);
+  const foto = sfeer?.[0]?.foto_url ?? null;
+
   const { data: acts } = await supabase
     .from("bdzbookings_acts_publiek")
     .select("slug, name, type, genres, tijdperken, kaart_foto, foto_url, specialiteit, prijs_vanaf")
@@ -23,7 +30,7 @@ export default async function ActsPage({ searchParams }: { searchParams: Promise
   return (
     <main className="min-h-screen">
       <section className="relative flex min-h-[62vh] items-center justify-center overflow-hidden px-6 pb-24 pt-40">
-        {foto && <Image src={`/sfeer/${foto}`} alt="" fill priority sizes="100vw" className="object-cover" />}
+        {foto && <Image src={foto} alt="" fill priority sizes="100vw" className="object-cover" />}
         <div className="absolute inset-0 bg-zwart/55" />
         <div className="absolute inset-0 bg-gradient-to-b from-zwart/60 via-transparent to-zwart" />
         <div className="relative text-center">
