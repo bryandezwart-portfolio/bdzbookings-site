@@ -39,7 +39,7 @@ export default async function Home() {
             <span className="sr-only">Dj, artiest of band boeken voor jouw bruiloft, bedrijfsfeest of dorpsfeest in Noord-Brabant en Gelderland</span>
             <span aria-hidden="true">De juiste act voor<br /><TypeTekst /></span>
           </h1>
-          <p className="mx-auto mt-6 max-w-xl text-lg text-balance text-tekst/80">Dj&apos;s, artiesten en bands voor bruiloften, bedrijfsfeesten en dorpsfeesten. Ik regel het van eerste telefoontje tot laatste nummer.</p>
+          <p className="mx-auto mt-6 max-w-xl text-lg text-balance text-tekst/80">Dj&apos;s, artiesten en bands voor bruiloften, bedrijfsfeesten en dorpsfeesten. Ik regel het van het eerste telefoontje tot het laatste nummer.</p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             <Link href="/acts" className="rounded-full bg-oranje px-7 py-3 font-medium text-zwart transition hover:opacity-90">Bekijk alle acts</Link>

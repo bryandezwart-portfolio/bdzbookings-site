@@ -31,7 +31,7 @@ export default function OverPage() {
         </div>
 
         <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-rand bg-rand sm:grid-cols-3">
-          <div className="bg-kaart p-6"><p className="text-xs uppercase tracking-widest text-oranje">Persoonlijk</p><p className="mt-2 text-sm">Ik ben je aanspreekpunt, van eerste telefoontje tot laatste nummer.</p></div>
+          <div className="bg-kaart p-6"><p className="text-xs uppercase tracking-widest text-oranje">Persoonlijk</p><p className="mt-2 text-sm">Ik ben je aanspreekpunt, van het eerste telefoontje tot het laatste nummer.</p></div>
           <div className="bg-kaart p-6"><p className="text-xs uppercase tracking-widest text-oranje">Vrijblijvend</p><p className="mt-2 text-sm">Een aanvraag verplicht je tot niets. We bellen eerst.</p></div>
           <div className="bg-kaart p-6"><p className="text-xs uppercase tracking-widest text-oranje">Uit de praktijk</p><p className="mt-2 text-sm">Zelf dj, dus ik weet wat er nodig is om een avond te laten lopen.</p></div>
         </div>

@@ -12,7 +12,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "Bryan de Zwart Bookings | Dj's, artiesten en bands boeken",
-  description: "Boek een dj, artiest of band voor je bruiloft, bedrijfsfeest of dorpsfeest. Persoonlijk geregeld, van eerste telefoontje tot laatste nummer.",
+  description: "Boek een dj, artiest of band voor je bruiloft, bedrijfsfeest of dorpsfeest. Persoonlijk geregeld, van het eerste telefoontje tot het laatste nummer.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

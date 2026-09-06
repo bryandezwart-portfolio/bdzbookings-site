@@ -23,7 +23,7 @@ export default function Footer() {
         <div className="grid gap-12 sm:grid-cols-3">
           <div>
             <Image src="/logo.png" alt="Bryan de Zwart Bookings" width={420} height={120} className="h-11 w-auto" />
-            <p className="mt-5 text-sm leading-relaxed text-dim">Dj&apos;s, artiesten en bands voor bruiloften, bedrijfsfeesten en dorpsfeesten. Persoonlijk geregeld, van eerste telefoontje tot laatste nummer.</p>
+            <p className="mt-5 text-sm leading-relaxed text-dim">Dj&apos;s, artiesten en bands voor bruiloften, bedrijfsfeesten en dorpsfeesten. Persoonlijk geregeld, van het eerste telefoontje tot het laatste nummer.</p>
           </div>
 
           <div>
