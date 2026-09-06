@@ -1,26 +1,15 @@
-import fs from "fs";
-import path from "path";
 import Image from "next/image";
+import { sfeerfotos } from "@/lib/sfeer";
 import Link from "next/link";
 import HeroSlider from "@/components/HeroSlider";
 import TypeTekst from "@/components/TypeTekst";
 import ActCarrousel from "@/components/ActCarrousel";
 import { createPublicClient } from "@/lib/supabase";
 
-function sfeerfotos() {
-  try {
-    return fs.readdirSync(path.join(process.cwd(), "public/sfeer"))
-      .filter((f) => /\.(jpe?g|png|webp|avif)$/i.test(f))
-      .sort();
-  } catch {
-    return [];
-  }
-}
-
 export const revalidate = 300;
 
 export default async function Home() {
-  const fotos = sfeerfotos();
+  const fotos = sfeerfotos;
 
   const supabase = createPublicClient();
   const { data: acts } = await supabase

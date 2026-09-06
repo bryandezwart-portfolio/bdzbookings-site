@@ -1,6 +1,5 @@
-import fs from "fs";
-import path from "path";
 import Image from "next/image";
+import { sfeerfotos } from "@/lib/sfeer";
 import { createPublicClient } from "@/lib/supabase";
 import ActFilter from "@/components/ActFilter";
 
@@ -11,19 +10,9 @@ export const metadata = {
   description: "Bekijk alle dj's, artiesten en bands. Zoek op genre, tijdperk of type act en vraag vrijblijvend de beschikbaarheid op.",
 };
 
-function sfeerfoto() {
-  try {
-    const f = fs.readdirSync(path.join(process.cwd(), "public/sfeer"))
-      .filter((n) => /\.(jpe?g|png|webp|avif)$/i.test(n)).sort();
-    return f[f.length - 1] ?? null;
-  } catch {
-    return null;
-  }
-}
-
 export default async function ActsPage({ searchParams }: { searchParams: Promise<{ type?: string }> }) {
   const { type } = await searchParams;
-  const foto = sfeerfoto();
+  const foto = sfeerfotos[sfeerfotos.length - 1] ?? null;
 
   const supabase = createPublicClient();
   const { data: acts } = await supabase
