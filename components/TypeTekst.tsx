@@ -35,6 +35,19 @@ export default function TypeTekst() {
   }, [lengte, wist, i]);
 
   return (
-    <span className="text-oranje">{woorden[i].slice(0, lengte)}<span className="ml-0.5 inline-block w-[2px] animate-pulse bg-oranje align-middle" style={{ height: "0.8em" }} /></span>
+    <span className="grid w-full text-[0.75em] leading-tight text-oranje [overflow-wrap:anywhere] sm:text-[1em]">
+      {woorden.map((woord) => (
+        <span key={woord} aria-hidden className="invisible col-start-1 row-start-1">
+          {woord}
+        </span>
+      ))}
+      <span className="col-start-1 row-start-1">
+        {woorden[i].slice(0, lengte)}
+        <span
+          className="ml-0.5 inline-block w-[2px] animate-pulse bg-oranje align-middle"
+          style={{ height: "0.8em" }}
+        />
+      </span>
+    </span>
   );
 }
