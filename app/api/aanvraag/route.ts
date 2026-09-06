@@ -4,9 +4,9 @@ import { Resend } from "resend";
 
 // Straks, zodra bdzbookings.nl in Resend is geverifieerd:
 // verander VAN in: "Bryan de Zwart Bookings <bookings@bdzbookings.nl>"
-const VAN = "Bryan de Zwart Bookings <bookings@artiestenportaal.nl>";
+const VAN = "Bryan de Zwart Bookings <bookings@bdzbookings.nl>";
 const NAAR_MIJ = "info@bdzbookings.nl";
-const SITE = "https://bdzbookings.netlify.app";
+const SITE = "https://bdzbookings.nl";
 
 const ORANJE = "#f2621f";
 const DONKER = "#141110";
